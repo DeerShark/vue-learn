@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 事件绑定 -->
+    <div id="app">
+        <!-- 点击事件 -->
+        <input type="button" value="v-on绑定" v-on:click="doit">
+        <input type="button" value="v-on简写" @click="doit">
+        <!-- 双击事件 -->
+        <input type="button" value="双击事件" @dblclick="doit">
+        <!-- 点击增加字符串 -->
+        <h2 @click="change">{{ food }}</h2>
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                food:"西红柿炒蛋"
+            },
+
+            methods:{ //方法实现
+                doit:function(){
+                    alert("绑定事件一");
+                },
+                change:function(){
+                    // this.food可以获取data中的food值
+                    this.food+="吃吃吃!"
+                    //重点更新数据，而不是更改dom内的元素
+                }
+            }
+        })
+    </script>
+</body>
+</html>

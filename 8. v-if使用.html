@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>v-if 与 v-show</p>
+        <button @click="show">切换</button>
+
+        <!-- 单条件判断 -->
+        <p v-if="isShow">v-if - 我展示出来了</p>
+
+        <!-- 多条件判断 -->
+        <p v-if="size=='f'">f</p>
+        <p v-else-if="size=='ff'">ff</p>
+        <p v-else-if="size=='fff'">fff</p>
+        <p v-else="size=='ffff'">ffff</p>
+        
+        <!-- v-show 与 v-if 的区别：前者是在css中加入display:none样式，后者是直接删除dom -->
+        <p v-show="isShow">v-show - 我展示出来了</p>
+        
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                isShow:false,
+                size:'ff',
+            },
+            methods:{
+                show:function(){
+                    this.isShow=!this.isShow;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

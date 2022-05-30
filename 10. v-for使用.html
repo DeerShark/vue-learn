@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="add">增加</button>
+        <button @click="remove">删除</button>
+        <ul>
+            <!-- item相当于每个对象 -->
+            <li v-for="item in list">
+                {{ item }}
+            </li>
+            <!-- item相当于每个对象，index相当于对象的编号 -->
+            <li v-for="(item,index) in objData">
+                {{ index }} . {{ item.name }}
+            </li>
+        </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                list:["哈哈","嘿嘿","嘻嘻"],
+                objData:[
+                    {name:"广州"},
+                    {name:"深圳"}
+                ]
+            },
+            methods:{
+                add:function(){
+                    this.objData.push({name:"深圳技术大学"});
+                },
+                remove:function(){
+                    this.objData.shift();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <todo>
+            <!-- 此处子组件可获取父组件的变量值 -->
+            <todo-list slot="list" :item_name="title"></todo-list>
+            <todo-items slot="items" :item_list="items"></todo-items>
+        </todo>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component("todo",{
+            template:`
+            <div>
+                <slot name="list"></slot>
+                <slot name="items"></slot>
+            </div>
+            `
+        })
+
+        Vue.component("todo-list",{
+            props:['item_name'],
+            template:`
+            <div>
+                <p>名字：{{ item_name }}</p>
+            </div>
+            `
+        })
+
+        Vue.component("todo-items",{
+            props:['item_list'],
+            template:`
+            <div>
+                <ul>
+                    <li v-for="item in item_list">
+                    {{ item }}
+                    </li>
+                </ul>
+            </div>
+            `
+        })
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                title:"列表",
+                items:["张三","李四","王五"]
+            }
+        })
+
+    </script>
+</body>
+</html>

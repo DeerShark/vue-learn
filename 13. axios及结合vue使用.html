@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="getGushi()">获取古诗词</button>
+        <p>{{ gushi }}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--
+        古诗词接口：https://v1.jinrishici.com/all.json
+        调用方法：GET
+    -->
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                gushi:"我是古诗词"
+            },
+            methods:{
+                getGushi:function(){
+                    that = this; //成功的回调函数中this不可用，故用外部的that变量来存储
+                    axios.get("https://v1.jinrishici.com/all.json") //get方法请求api
+                    // axios.post("https://xxx/com",{key1:value,key2:value}) //post方法请求api,请求的数据是对象
+                    .then(function(response){
+                        that.gushi=response.data.content;
+                    },
+                    function(err){
+                        that.gushi="获取错误";
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

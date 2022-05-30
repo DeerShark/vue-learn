@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 展示 -->
+        <p v-show="true">展示出来啦！</p>
+        <!-- 动态展示/隐藏 -->
+        <button @click="show">切换隐藏的秘密！</button>
+        <p v-show="isShow">isShow展示出来啦！</p>
+        <!-- 条件展示/隐藏 -->
+        <p v-show="true">年龄：{{ age }}</p>
+        <p v-show="age > 17">年龄大于17条件显示成功！</p>
+        <button @click="changeAge">添加年龄</button>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                isShow:false,
+                age:10,
+            },
+            methods:{
+                show:function(){
+                    this.isShow = !this.isShow;
+                    
+                },
+                changeAge:function(){
+                    this.age++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

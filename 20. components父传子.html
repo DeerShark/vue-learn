@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 从父组件传入子组件值 -->
+        <abar thename="首页" show="true"></abar>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('abar',{
+            template:`
+            <div>
+                <button v-if='show' @click='c'>首页</button>
+                <p>{{ thename }}</p>
+            </div>`,
+            props:{ //定义值名以及类型
+                thename:String,
+                show:Boolean
+            },
+            methods:{
+                c(){
+                    alert("首页");
+                }
+            }
+        })
+        var app = new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>

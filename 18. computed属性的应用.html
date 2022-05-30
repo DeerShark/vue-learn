@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="inputing" type="text">
+        <ul>
+            <li v-for="d in myList">
+                {{ d }}
+            </li>
+        </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                inputing:"",
+                list:["Hi","Hello","Hbuild"],
+            },
+            computed:{
+                //筛选过滤
+                //filter()函数，数组中的每个元素都会执行这个函数。且如果返回值为true,则该元素被保留;
+                myList(){
+                    return this.list.filter(
+                        //相当于遍历数组中每一个元素
+                        //然后再在每一个元素中索引inputing中的值
+                        //例如找'l'，Hi中索引的结果是-1(不存在)，Hello中索引的结果是2，Huild中索引的结果是3
+                        //所以Hi不满足 -1 > -1，故返回值是false，而后两个满足条件，返回值是true
+                        //故最后两个元素满足条件，新建一个新的数组只有后两个元素
+                        item=>item.indexOf(this.inputing) > -1
+                    )
+                }
+            }
+        })
+    </script>
+</body>
+</html>

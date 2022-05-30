@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>getTime1：{{ getTime1() }}</p>
+        <p>getTime2：{{ getTime2 }}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                time1:"2333"
+            },
+            methods:{
+                getTime1(){ //相当于getTime1:function(){
+                    return Date.now();
+                },
+            },
+            computed:{
+                //computed属性，当里面的方法被调用时，计算的结果会存储在内存中不变
+                //重复调用值也不改变
+                //调用computed内的方法时不需要加括号，如下面的直接用getTime2而不是getTime2()
+                getTime2(){
+                    this.time1; //当变量变化时，此方法存储的数据将改变
+                    return Date.now();
+                },
+            }
+        })
+    </script>
+</body>
+</html>

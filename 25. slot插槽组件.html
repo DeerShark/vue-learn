@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <component_a>
+            <!-- 组件中的插槽 -->
+            
+            <!-- 当插槽中所有内容都要显示时，组件中使用<slot></slot>即可 -->
+            <div>我是组件内的内容</div>
+            <div>我是组件内的内容</div>
+            <div>我是组件内的内容</div>
+            <!-- 当插槽中指定内容显示，标签中可以加入slot属性来自由使用 -->
+            <div slot="no1">我是组件no1</div>
+            <div slot="no2">我是组件no2</div>
+            <div slot="no3">我是组件no3</div>
+        </component_a>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component("component_a",{
+            template:`
+            <div>
+                <!-- 插槽所有使用 -->
+                <slot></slot>
+                <!-- 插槽部分使用 -->
+                <slot name="no1"></slot>
+                <slot name="no3"></slot>
+                <p>我是组件a</p>
+            </div>
+            `
+        })
+
+        var app = new Vue({
+            el:"#app"
+        });
+    </script>
+</body>
+</html>

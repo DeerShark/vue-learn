@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ gushi }}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                gushi:"我是古诗词"
+            },
+            mounted:function(){
+                //钩子函数每次打开页面自动调用一次
+                axios.get("https://v1.jinrishici.com/all.json")
+                .then(response=>(this.gushi=response.data.content)); //可用response=>()形式不用再定义一个变量存放this
+            }
+        })
+    </script>
+</body>
+</html>

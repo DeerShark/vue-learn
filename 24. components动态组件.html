@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- keep-alive保证之前页面输入框或其他数据不会丢失 -->
+        <keep-alive>
+            <!-- component为显示的组件名 -->
+            <component :is="who"></component>
+        </keep-alive>
+        <!-- 菜单位置 -->
+        <ul>
+            <!-- 点击绑定事件直接为who变量赋值，从而改变组件 -->
+            <li><a @click="who='home'">首页</a></li>
+            <li><a @click="who='blog'">博客</a></li>
+            <li><a @click="who='news'">新闻</a></li>
+        </ul>
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                who:"home"
+            },
+            // app对象下的子组件
+            components:{
+                "home":{
+                    template:
+                    `<div>
+                        <input type="text">    
+                    </div>`
+                },
+                "blog":{
+                    template:`
+                    <div>
+                        <p>This is blog page.</p>
+                    </div>`
+                },
+                "news":{
+                    template:`
+                    <div>
+                        <p>This is news page.</p>
+                    </div>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

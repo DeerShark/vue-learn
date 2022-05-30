@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 父组件接受用 @名字="父组件函数名($event)" -->
+        <abar @b_event="receive($event)"></abar>
+        <p>{{ ev }}</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('abar',{
+            template:`
+            <div>
+                <button @click="send()">发送</button>
+            </div>`,
+            methods:{
+                send(){ //子组件传出方法this.$emit('名字','值')
+                    this.$emit('b_event',"你好");
+                }
+            }
+        })
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                ev:"",
+            },
+            methods:{
+                receive(e){ //接受子组件的消息方法
+                    this.ev=e;
+                    alert(`父组件接受消息：${e}`);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

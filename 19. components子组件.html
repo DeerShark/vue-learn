@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <abar></abar>
+        <bbar></bbar>
+    </div>
+    <script>
+
+        //全局组件
+        Vue.component
+        (
+            'abar', //组件名称
+            {
+                template: //组件展示的内容，只能由一个标签包裹，不能存在多个标签，如只能在<div></div>中写更多标签，不能多个并写
+                    `<div>
+                        <p>我是abar</p>
+                        <child></child>
+                        <abar_child></abar_child>
+                        <button @click="ccc()">弹窗</button>
+                    </div>`,
+                data() //数据的写法不一样，这里必须为一个函数，
+                {
+                    return {
+                        name:"姓名"
+                    }
+                },
+                methods:{ //方法的写法
+                    ccc(){
+                        alert("abar");
+                    }
+                },
+                components: //该组件下的子组件，只允许在该组件调用
+                {
+                    abar_child:
+                    {
+                        template:`<p>我是abar下的子组件</p>`
+                    }
+                }
+            }
+        )
+
+        Vue.component
+        (
+            'bbar',
+            {
+                template:`<div>
+                    <p>我是bbar</p>
+                    <child></child>
+                    </div>`
+            }
+        )
+
+        Vue.component('child',{
+            template:`<p>我是child</p>`
+        })
+
+        var app = new Vue({
+            el:"#app",
+        });
+    </script>
+</body>
+</html>

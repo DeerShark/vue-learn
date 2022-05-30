@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="doit('just ','do it')">点我！</button>
+        <input type="text" @keyup.enter="hi('Hello')">
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            methods:{
+                doit:function(p1,p2){
+                    alert(p1+p2);
+                },
+                hi:function(p1){
+                    alert(p1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
